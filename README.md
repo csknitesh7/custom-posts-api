@@ -1,40 +1,26 @@
-# custom-posts-api
-
-// 
-//
-//
-//
-//
-
-Custom Posts API
-Custom Posts API is a WordPress plugin that allows you to fetch posts data from an external API and display it on the front-end of your website using a shortcode.
+Custom Posts From API
+A WordPress plugin that fetches posts data from the JSONPlaceholder API and displays them on the frontend in a grid format.
 
 Installation
-Download the plugin from GitHub or clone the repository.
-Upload the custom-posts-api directory to the /wp-content/plugins/ directory.
-Activate the plugin through the 'Plugins' menu in WordPress.
+Download the plugin ZIP file.
+Upload the ZIP file to your WordPress site.
+Activate the plugin.
 Usage
-To use the plugin, simply add the shortcode [custom_posts_from_api] to any post or page where you want to display the posts.
+To display the posts in a grid format, use the following shortcode:
 
-The shortcode will fetch the posts data from the following API: https://jsonplaceholder.typicode.com/posts
-
-The posts will be displayed in a grid format on the front-end of your website.
+csharp
+Copy code
+[custom_posts_from_api]
+The shortcode can be used in any post or page on your site.
 
 Customization
-You can customize the HTML output of the posts by editing the custom-posts-api.php file.
-
-Troubleshooting
-If you experience any issues with the plugin, please create a new issue on GitHub or contact the plugin author.
-
+If you want to customize the appearance of the posts, you can modify the CSS in the style.css file in the plugin folder.
 
 Credits
-Custom Posts API was created by [Nitesh K. Chaurasiya] for educational purposes. It uses the following third-party libraries:
+This plugin was developed by Your Name.
 
-jQuery
-Bootstrap
-Font Awesome
-More Information
-For more information on how to create custom WordPress plugins, please refer to the official WordPress documentation: https://developer.wordpress.org/plugins/
+License
+The Custom Posts From API plugin is licensed under the MIT License.
 
 
 
