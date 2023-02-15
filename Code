@@ -1,38 +1,31 @@
-//
-//
+<?php
 /*
-Plugin Name: Custom Posts API
-Description: A custom plugin for fetching and displaying posts from an external API.
+Plugin Name: Custom Posts From API
+Description: A custom plugin to fetch posts data from JSONPlaceholder API and show them on frontend in a grid format.
 Version: 1.0
-Author: Your Name
+Author: Nitesh Kumar Chaurasiya
 */
 
 function custom_posts_from_api_shortcode() {
-    $response = wp_remote_get( 'https://jsonplaceholder.typicode.com/posts' );
-
-    if ( is_wp_error( $response ) ) {
-        return 'Error retrieving posts.';
-    }
-
-    $posts = json_decode( wp_remote_retrieve_body( $response ) );
-
-    if ( ! $posts ) {
-        return 'No posts found.';
-    }
-
-    ob_start();
-?>
-    <div class="custom-posts-grid">
-    <?php foreach ( $posts as $post ) : ?>
-        <div class="custom-post">
-            <h3><?php echo esc_html( $post->title ); ?></h3>
-            <p><?php echo esc_html( $post->body ); ?></p>
-        </div>
-    <?php endforeach; ?>
-    </div>
-<?php
-    $output = ob_get_clean();
-
-    return $output;
+  // Use wp_remote_get() to retrieve the JSON data from the API
+  $response = wp_remote_get('https://jsonplaceholder.typicode.com/posts');
+  $posts = json_decode(wp_remote_retrieve_body($response));
+  
+  // Loop through the posts and display them in a grid format
+  $output = '<div class="custom-posts-from-api-grid">';
+  foreach ($posts as $post) {
+    $output .= '<div class="custom-posts-from-api-post">';
+    $output .= '<h2>' . $post->title . '</h2>';
+    $output .= '<p>' . $post->body . '</p>';
+    $output .= '</div>';
+  }
+  $output .= '</div>';
+  
+  return $output;
 }
-add_shortcode( 'custom_posts_from_api', 'custom_posts_from_api_shortcode' );
+add_shortcode('custom_posts_from_api', 'custom_posts_from_api_shortcode');
+
+function custom_posts_from_api_enqueue_scripts() {
+  wp_enqueue_style('custom-posts-from-api-style', plugin_dir_url(__FILE__) . 'style.css');
+}
+add_action('wp_enqueue_scripts', 'custom_posts_from_api_enqueue_scripts');
