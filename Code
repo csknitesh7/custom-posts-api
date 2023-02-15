@@ -1,0 +1,38 @@
+//
+//
+/*
+Plugin Name: Custom Posts API
+Description: A custom plugin for fetching and displaying posts from an external API.
+Version: 1.0
+Author: Your Name
+*/
+
+function custom_posts_from_api_shortcode() {
+    $response = wp_remote_get( 'https://jsonplaceholder.typicode.com/posts' );
+
+    if ( is_wp_error( $response ) ) {
+        return 'Error retrieving posts.';
+    }
+
+    $posts = json_decode( wp_remote_retrieve_body( $response ) );
+
+    if ( ! $posts ) {
+        return 'No posts found.';
+    }
+
+    ob_start();
+?>
+    <div class="custom-posts-grid">
+    <?php foreach ( $posts as $post ) : ?>
+        <div class="custom-post">
+            <h3><?php echo esc_html( $post->title ); ?></h3>
+            <p><?php echo esc_html( $post->body ); ?></p>
+        </div>
+    <?php endforeach; ?>
+    </div>
+<?php
+    $output = ob_get_clean();
+
+    return $output;
+}
+add_shortcode( 'custom_posts_from_api', 'custom_posts_from_api_shortcode' );
