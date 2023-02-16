@@ -17,10 +17,8 @@ Customization
 If you want to customize the appearance of the posts, you can modify the CSS in the style.css file in the plugin folder.
 
 Credits
-This plugin was developed by Your Name.
+This plugin was developed by Nitesh Kumar Chaurasiya.
 
-License
-The Custom Posts From API plugin is licensed under the MIT License.
 
 
 
